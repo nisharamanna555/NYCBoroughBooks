@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, React, useState, useCallback } from 'react';
 import CreateUserForm from '../components/CreateUserForm';
 import Header from '../components/Header';
+import {auth} from "../components/firebase";
 
 function CreateUserPage({ isLoading, isLoggedIn, setIsLoggedIn, setUserInformation }) {
     const navigate = useNavigate();
@@ -22,8 +23,6 @@ function CreateUserPage({ isLoading, isLoggedIn, setIsLoggedIn, setUserInformati
             const password = e.currentTarget.password.value;
             const displayName = e.currentTarget.displayName.value;
 
-            //console.log({email, password});
-            const auth = getAuth();
 
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {

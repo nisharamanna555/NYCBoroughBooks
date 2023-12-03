@@ -1,10 +1,12 @@
 import { React, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
+
 import { getDocs, getFirestore, collection } from "firebase/firestore";
 import Header from '../components/Header';
 import Post from '../components/Post'
-
+import Map from '../Map';
+import PinForm from '../PinForm';
 
 const queryData = async (app) => {
     if (!app) return [];
@@ -17,73 +19,68 @@ const queryData = async (app) => {
     return data;
 };
 
-function HomePage({ app, isLoading, isLoggedIn, setIsLoggedIn, setUserInformation }) {
+function HomePage({app, isLoading, isLoggedIn, setIsLoggedIn, setUserInformation }) {
     const navigate = useNavigate();
     const [postData, setPostData] = useState([]);
-
-    useEffect(() => {
-        if(!isLoggedIn && !isLoading) return navigate('/'); //if NOT logged in, nav to login
-    }, [isLoading, isLoggedIn, navigate]) 
 
     useEffect(() => {
         if(!app) return;
         queryData(app).then(setPostData);
     }, [app])
 
-    return (
-        <>
-            <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserInformation={setUserInformation} />
-            <div className="PageWrapper HomePage">
-                <div className= "cover">
-                    <div className="cover-top">
-                        <div className="cover--left">
-                            <h1>brandspiration</h1>
-                            <h3>Simple branding templates to start off your designs!</h3>
-                        </div>
-                        <div className="cover--right">
-                            <h2 style={{color: "#D8AC90"}}>1 IMAGE!</h2>
-                            <h2 style={{color: "#D83D66"}}>2 FONTS!</h2>
-                            <h2 style={{color: "#15183B"}}>3 COLORS!</h2>
-                        </div>
-                    </div>
-                    <div className="cover-buttons">
-                        {isLoggedIn && (
-                            <li className="create-post--home">
-                                <a href="/create-post" className="create-post--home"><p>Create your own!</p></a>
-                            </li>
-                        )}
-                        {!isLoggedIn && (
-                            <li className="create-post--home">
-                                <a href="/login" className="create-post--home"><p>Create your own!</p></a>
-                            </li>
-                        )}
-                        <a className="explore--home" href="#scroll-to">Explore</a>
-                    </div>
-                </div>
-                
-                <section id="scroll-to" className="PostsWrapper">
-                    {postData.map((post,index) => (
-                        <div 
-                            className="PostComponent"
-                            key = {index}>
-                        <Post
-                            caption={post.caption}
-                            imageAlt={post.imageAlt}
-                            imageUrl={post.imageUrl}
-                            userId={post.userId}
-                            userName={post.userName}
-                            font1Url={post.font1Url}
-                            font2Url={post.font2Url}
-                            color1={post.color1}
-                            color2={post.color2}
-                            color3={post.color3}
-                        />
-                        </div>
-                    ))}
-                </section>
-            </div>
-        </>
-    );
+    const [pins, setPins] = useState([]);
+
+  const addPin = async (newPin) => {
+    try {
+      // TODO: Implement the logic to send the new pin to the backend
+      const response = await fetch('http://localhost:3001/pins', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newPin),
+      });
+
+      if (response.ok) {
+        const addedPin = await response.json();
+        setPins((prevPins) => [...prevPins, addedPin]);
+        console.log('Pin added successfully!');
+      } else {
+        // Handle error
+        console.error('Failed to add pin');
+      }
+    } catch (error) {
+        console.error('Error adding pin:', error.message);
+    }
+  };
+  useEffect(() => {
+    // Fetch existing pins from the backend
+    const fetchPins = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/pins');
+        if (response.ok) {
+          const pinsData = await response.json();
+          setPins(pinsData);
+        } else {
+          // Handle error
+          console.error('Failed to fetch pins');
+        }
+      } catch (error) {
+        console.error('Error fetching pins:', error.message);
+      }
+    };
+
+    fetchPins();
+  }, []); // Run once on component mount
+
+  return (
+    <div className="App">
+        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserInformation={setUserInformation} />
+      <h1>New York City Cultural Preservation Map</h1>
+      <PinForm addPin={addPin} />
+      <Map pins={pins} />
+    </div>
+  );
 }
 
 export default HomePage;
