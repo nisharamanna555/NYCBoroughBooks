@@ -30,12 +30,6 @@ function Header( {isLoggedIn, setIsLoggedIn, setUserInformation}) {
                         </li>
                     )}
                     {!isLoggedIn && (
-                        <li className="create-post--nav">
-                            <Link to="/login"><p>Create</p></Link>
-                        </li>
-                    )}
-                    
-                    {!isLoggedIn && (
                         <li>
                             <Link to="/login"><p>Login</p></Link>
                         </li>

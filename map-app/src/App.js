@@ -9,7 +9,6 @@ import HomePage from './pages/HomePage';
 import CreateUserPage from './pages/CreateUser';
 import LoginPage from './pages/Login';
 import UserOverview from './pages/UserOverview';
-import CreatePostPage from './pages/CreatePost';
 
 // Your web app's Firebase configuration
   
@@ -85,18 +84,6 @@ function App() {
             setIsLoggedIn={setIsLoggedIn} 
             setUserInformation={setUserInformation} />
         ),
-    },
-    {
-      path: "/create-post",
-      element: (
-        <CreatePostPage 
-          app={appInitialized}
-          isLoading={isLoading}
-          isLoggedIn={isLoggedIn}
-          userInformation={userInformation}
-          setIsLoggedIn={setIsLoggedIn} 
-          setUserInformation={setUserInformation} />
-      ),
     },
   ]);
 

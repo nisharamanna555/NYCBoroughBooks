@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-
+import {auth} from "../components/firebase";
+import {onAuthStateChanged} from 'firebase/auth';
 
 import { getDocs, getFirestore, collection } from "firebase/firestore";
 import Header from '../components/Header';
@@ -22,18 +23,25 @@ const queryData = async (app) => {
 function HomePage({app, isLoading, isLoggedIn, setIsLoggedIn, setUserInformation }) {
     const navigate = useNavigate();
     const [postData, setPostData] = useState([]);
+    const [isUserSignedIn, setIsUserSignedIn] = useState(false);
+    var user = auth.currentUser;
 
     useEffect(() => {
         if(!app) return;
         queryData(app).then(setPostData);
     }, [app])
 
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth,user => {
+          setIsUserSignedIn(!!user);
+    });
+});
     const [pins, setPins] = useState([]);
 
   const addPin = async (newPin) => {
     try {
       // TODO: Implement the logic to send the new pin to the backend
-      const response = await fetch('http://localhost:3001/pins', {
+      const response = await fetch('http://localhost:3000/pins', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -57,7 +65,7 @@ function HomePage({app, isLoading, isLoggedIn, setIsLoggedIn, setUserInformation
     // Fetch existing pins from the backend
     const fetchPins = async () => {
       try {
-        const response = await fetch('http://localhost:3001/pins');
+        const response = await fetch('http://localhost:3000/pins');
         if (response.ok) {
           const pinsData = await response.json();
           setPins(pinsData);
@@ -77,7 +85,9 @@ function HomePage({app, isLoading, isLoggedIn, setIsLoggedIn, setUserInformation
     <div className="App">
         <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserInformation={setUserInformation} />
       <h1>New York City Cultural Preservation Map</h1>
-      <PinForm addPin={addPin} />
+      {isUserSignedIn ? (
+        <PinForm addPin={addPin} />
+      ) : <></>}
       <Map pins={pins} />
     </div>
   );
