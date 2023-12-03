@@ -32,6 +32,9 @@ const PinForm = ({ addPin }) => {
   };
   // Callback function to receive selected location from the map
   const handleMapClick = (e) => {
+    console.log("selected location:", e.latlng);
+    console.log("Map clicked:", e);
+
     setSelectedLocation({
       lat: e.latlng.lat,
       lng: e.latlng.lng,
@@ -49,7 +52,7 @@ const PinForm = ({ addPin }) => {
         <input type="file" onChange={(e) => setPhoto(e.target.files[0])} />
       </label>
       {/* TODO: Add a map component for location selection */}
-      {/* <Map onClick={handleMapClick} selectedLocation={selectedLocation} /> */}
+      {selectedLocation && <Map onClick={handleMapClick} selectedLocation={selectedLocation} />}
 
       <button type="submit">Add Pin</button>
     </form>
