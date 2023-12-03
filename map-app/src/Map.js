@@ -33,11 +33,11 @@ const Map = ({ pins, selectedLocation, setSelectedLocation }) => {
   
   var myIcon =L.Icon.extend({
     options: {
-    iconSize:     [38, 95],
-    shadowSize:   [50, 64],
-    iconAnchor:   [22, 94],
-    shadowAnchor: [4, 62],
-    popupAnchor:  [-3, -76]
+    iconSize:     [38, 38],
+    shadowSize:   [38, 38],
+    iconAnchor:   [19, 38],
+    shadowAnchor: [19, 38],
+    popupAnchor:  [0, -40]
 }
 });
 
@@ -62,24 +62,25 @@ var gemIcon = new myIcon({iconUrl: gem, shadowUrl: gemShadow}),
       ))}
       {selectedLocation && (
         <Marker position={[selectedLocation.lat, selectedLocation.lng]} icon = {gemIcon}>
-          <Popup>Selected Location</Popup>
+          <Popup>Amazing hotel here, it's near a lot of good food places and near the NYU Tandon school. Really close to some subway stations too.</Popup>
         </Marker>
       )}
       <Marker position ={[40.7128, -74.0060]} icon = {gemIcon}>
       <Popup>
-        A pretty CSS3 popup. <br /> Easily customizable.
+        New York City hall!
       </Popup>
     </Marker>
     <Marker position ={[40.7128, -73.9860]} icon = {historyIcon}>
       <Popup>
-        A pretty CSS3 popup. <br /> Easily customizable.
+        This is on Christopher Street.
       </Popup>
     </Marker>
     <Marker position ={[40.7328, -74.0060]} icon = {storyIcon}>
       <Popup>
-        A pretty CSS3 popup. <br /> Easily customizable.
+        Ew! I saw a rat here. Be careful, make sure to wear long pants.
       </Popup>
     </Marker>
+    
       {/* Use useMapEvents for handling map events */}
       <MapEvents onClick={handleMapClick} />
     </MapContainer>

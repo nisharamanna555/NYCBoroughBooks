@@ -41,15 +41,12 @@ const PinForm = ({ addPin, selectedLocation, setSelectedLocation }) => {
     <form className="pin-form" onSubmit={handleSubmit}>
       <label>
         Caption:
-        <input type="text" value={caption} onChange={(e) => setCaption(e.target.value)} />
+        <input type="textarea" value={caption} onChange={(e) => setCaption(e.target.value)} />
       </label>
       <label>
-        Photo:
         <input type="file" onChange={(e) => setPhoto(e.target.files[0])} />
       </label>
       {/* Use the Map component for location selection */}
-      {selectedLocation && <Map pins={[]} selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />}
-
       <button type="submit">Add Pin</button>
     </form>
   );
