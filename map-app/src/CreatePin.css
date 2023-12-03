@@ -1,8 +1,16 @@
 .pin-form {
     display:flex;
     flex-direction: column;
-    background-color:green;
+    background-color:#03002b;
+    height: 350px;
     width: 50%;
     position: absolute;
     z-index: 100;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    color: #ffffff;
+    flex-shrink: 0;
+    margin: 25px;
+ 
 }
+
