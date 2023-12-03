@@ -14,7 +14,7 @@ const Map = ({ pins }) => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       {pins.map((pin) => (
-        pin.location && (
+        pin.location && pin.location.coordinates && (
           <Marker key={pin._id} position={pin.location.coordinates}>
             <Popup>{pin.caption}</Popup>
           </Marker>
