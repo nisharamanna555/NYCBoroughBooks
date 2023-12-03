@@ -11,7 +11,7 @@ app.use(cors())
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/your-database-name', {
+mongoose.connect('mongodb://localhost:27017/nishabean', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -25,7 +25,18 @@ mongoose.connection.on('connected', () => {
 app.post('/pins', async (req, res) => {
   try {
     const { location, caption, photoUrl } = req.body;
+    console.log(req.body);
     const newPin = new Pin({ location, caption, photoUrl });
+    // const newPin = new Pin({
+    //   location: {
+    //     type: 'Point',
+    //     coordinates: [50.0, 50.0],
+    //   },
+    //   caption: 'Your caption here',
+    //   // photoUrl: 'URL to your photo',
+    // });
+    console.log(newPin)
+    console.log(req.body)
     await newPin.save();
     res.status(201).json(newPin);
   } catch (error) {
