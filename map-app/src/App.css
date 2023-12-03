@@ -1,10 +1,11 @@
-.App {
-  text-align: center;
+body{
+  background-color: #03002B;
+  font-family: 'Inter', sans-serif;
+  color: #FFEBC4;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App {
+  text-align: center;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -24,15 +25,135 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+li{
+  list-style: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*-------------Header Component-------------*/
+
+header {
+  position: fixed;
+  width: 100%;
+}
+nav {
+  align-items: center;
+  display: flex;
+  padding: 10px 30px;
+}
+.nav--logo{
+  flex-basis: 30%;
+}
+.nav--logo a {
+  display: flex;
+}
+.nav--logo p { /*home link*/
+  color: #FF8742;
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0;
+}
+.nav--links {
+  display: flex;
+  flex-basis: 70%;
+  justify-content: flex-end;
+}
+.nav--links p {
+  background-color: #FF8742;
+  border-radius: 5px;
+  color: white;
+  margin-right: 15px;
+  padding: 5px 30px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.nav--links p:hover{
+  background-color: #F12E3E;
+}
+
+
+a:link { text-decoration: none; }
+
+
+/*-------------Form Pages-------------*/
+
+
+.Form {
+  background-color: #03002B;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  padding: 20px;
+  margin: 0 auto;
+}
+.Form p {
+  font-size: 18px;
+  font-weight: 300;
+  margin: 0px;
+  text-align: left;
+}
+.Form button {
+  background-color: #FF8742;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  padding: 10px;
+  transition: 0.3s;
+  width: 100%;
+  margin: 30px 0px;
+}
+.Form button:hover {
+  background-color: #F12E3E;
+}
+
+.Form a p {
+  color:white;
+  font-weight: 800;
+  padding: 7px;
+  margin: 0;
+  transition: color 150ms ease-out;
+}
+.Form a p:hover {
+  color: #F12E3E;
+}
+
+/*already have an account?*/
+.authorization {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.FormElement{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10vh;
+}
+.FormElement label{
+  font-size: 30px;
+  font-weight: 800;
+  color: white;
+}
+.FormElement textarea::placeholder, input::placeholder {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+.FormElement textarea, input {
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  padding: 15px 0px 10px 15px;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 350;
+  height: 1.6vw;
+  inline-size: 300px;
+  overflow-wrap: break-word;
+  hyphens: manual;
+  resize: none;
 }

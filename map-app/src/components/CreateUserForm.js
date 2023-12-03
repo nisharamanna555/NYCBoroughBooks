@@ -3,16 +3,16 @@ import React from 'react';
 function CreateUserForm( {signUpUser} ) {
     return (
         <form className="FormElement" onSubmit={(e) => signUpUser(e)}>
-            <label htmlFor="displayName">Username</label>
-            <textarea type="text" name="displayName"/>
+            <label htmlFor="displayName">Join BoroughBook!</label>
+            <textarea type="text" name="displayName" placeholder="Username"/>
 
-            <label htmlFor="email">Email</label>
-            <textarea type="text" name="email"/>
+            <label htmlFor="email"></label>
+            <textarea type="text" name="email" placeholder="Email"/>
 
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password"/>
+            <label htmlFor="password"></label>
+            <input type="password" name="password" placeholder="Password"/>
             
-            <button type="submit">Submit</button>
+            <button type="submit">Sign Up</button>
         </form>
     );
 }
