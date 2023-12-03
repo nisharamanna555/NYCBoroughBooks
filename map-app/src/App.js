@@ -1,6 +1,13 @@
 // src/App.js
 import React from 'react';
 import Map from './Map';
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from "react-router-dom";
+
 
 function App() {
   return (
