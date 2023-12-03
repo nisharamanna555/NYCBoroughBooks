@@ -26,17 +26,8 @@ app.post('/pins', async (req, res) => {
   try {
     const { location, caption, photoUrl } = req.body;
     console.log(req.body);
-    // const newPin = new Pin({ location, caption, photoUrl });
-    const newPin = new Pin({
-      location: {
-        type: 'Point',
-        coordinates: [50.0, 50.0],
-      },
-      caption: 'Your caption here',
-      photoUrl: 'URL to your photo',
-    });
-    console.log(newPin)
-    console.log(req.body)
+    const newPin = new Pin({ location, caption, photoUrl });
+    console.log("Nisha look", newPin)
     await newPin.save();
     res.status(201).json(newPin);
   } catch (error) {

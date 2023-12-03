@@ -2,13 +2,18 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const Map = ({ pins, selectedLocation }) => {
+const Map = ({ pins, selectedLocation, setSelectedLocation }) => {
   const center = [40.7128, -74.0060]; // Coordinates for New York City
+  console.log('Received Pins:', pins);
 
   const handleMapClick = (e) => {
     console.log("Map clicked");
     console.log("selected location:", e.latlng);
-    // Handle map click logic here
+    // Use the callback function to ensure you get the latest state
+    setSelectedLocation((prevLocation) => ({
+      lat: e.latlng.lat,
+      lng: e.latlng.lng,
+    }));
   };
 
   return (

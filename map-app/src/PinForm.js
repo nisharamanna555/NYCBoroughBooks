@@ -1,45 +1,41 @@
-// src/PinForm.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Map from './Map';
 
 //Styles and components
 import './CreatePin.css';
 
-const PinForm = ({ addPin }) => {
+const PinForm = ({ addPin, selectedLocation, setSelectedLocation }) => {
   const [caption, setCaption] = useState('');
   const [photo, setPhoto] = useState(null);
-  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [newPin, setNewPin] = useState(null);
+  
+
+  useEffect(() => {
+    if (selectedLocation) {
+      setNewPin({
+        caption,
+        location: [selectedLocation.lat, selectedLocation.lng],
+        // You can add other properties as needed
+      });
+    }
+  }, [selectedLocation, caption]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Check if a location is selected
-    if (!selectedLocation) {
+    if (!newPin || !newPin.location) {
       alert('Please select a location on the map');
       return;
     }
 
     // TODO: Implement photo upload logic (e.g., using FormData)
 
-    const newPin = {
-      caption,
-      // photo: URL to the uploaded photo
-      location: [selectedLocation.lat, selectedLocation.lng], // Get the selected location from the map
-    };
-
     // Call the addPin function to send the new pin to the backend
     addPin(newPin);
   };
-  // Callback function to receive selected location from the map
-  const handleMapClick = (e) => {
-    console.log("selected location:", e.latlng);
-    console.log("Map clicked:", e);
 
-    setSelectedLocation({
-      lat: e.latlng.lat,
-      lng: e.latlng.lng,
-    });
-  };
+  
 
   return (
     <form className="pin-form" onSubmit={handleSubmit}>
@@ -51,8 +47,8 @@ const PinForm = ({ addPin }) => {
         Photo:
         <input type="file" onChange={(e) => setPhoto(e.target.files[0])} />
       </label>
-      {/* TODO: Add a map component for location selection */}
-      {selectedLocation && <Map onClick={handleMapClick} selectedLocation={selectedLocation} />}
+      {/* Use the Map component for location selection */}
+      {selectedLocation && <Map pins={[]} selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />}
 
       <button type="submit">Add Pin</button>
     </form>
