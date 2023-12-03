@@ -1,6 +1,16 @@
 import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents} from 'react-leaflet';
+import L from "leaflet";
 import 'leaflet/dist/leaflet.css';
+
+import gem from './images/gem.png';
+import gemShadow from './images/gemShadow.png';
+
+import history from './images/history.png';
+import historyShadow from './images/historyShadow.png';
+
+import story from './images/story.png';
+import storyShadow from './images/storyShadow.png';
 
 const Map = ({ pins, selectedLocation }) => {
   const center = [40.7128, -74.0060]; // Coordinates for New York City
@@ -16,6 +26,20 @@ const Map = ({ pins, selectedLocation }) => {
     [40.917577, -73.700272]  // Northeast coordinates
   ];
   
+  var myIcon =L.Icon.extend({
+    options: {
+    iconSize:     [38, 95],
+    shadowSize:   [50, 64],
+    iconAnchor:   [22, 94],
+    shadowAnchor: [4, 62],
+    popupAnchor:  [-3, -76]
+}
+});
+
+
+var gemIcon = new myIcon({iconUrl: gem, iconShadow: gemShadow}),
+    historyIcon = new myIcon({iconUrl: history, iconShadow: historyShadow}),
+    storyIcon = new myIcon({iconUrl: story, iconShadow: storyShadow});
 
   return (
     <MapContainer center={center} zoom={13} style={{ height: '500px', width: '100%' }} 
@@ -36,7 +60,21 @@ const Map = ({ pins, selectedLocation }) => {
           <Popup>Selected Location</Popup>
         </Marker>
       )}
-
+      <Marker position ={[40.7128, -74.0060]} icon = {gemIcon}>
+      <Popup>
+        A pretty CSS3 popup. <br /> Easily customizable.
+      </Popup>
+    </Marker>
+    <Marker position ={[40.7128, -73.9860]} icon = {historyIcon}>
+      <Popup>
+        A pretty CSS3 popup. <br /> Easily customizable.
+      </Popup>
+    </Marker>
+    <Marker position ={[40.7328, -74.0060]} icon = {storyIcon}>
+      <Popup>
+        A pretty CSS3 popup. <br /> Easily customizable.
+      </Popup>
+    </Marker>
       {/* Use useMapEvents for handling map events */}
       <MapEvents onClick={handleMapClick} />
     </MapContainer>
