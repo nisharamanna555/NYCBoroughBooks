@@ -55,13 +55,13 @@ var gemIcon = new myIcon({iconUrl: gem, shadowUrl: gemShadow}),
       />
       {pins && pins.map((pin) => (
         pin.location && pin.location.coordinates && (
-          <Marker key={pin._id} position={pin.location.coordinates}>
+          <Marker key={pin._id} position={pin.location.coordinates} icon = {gemIcon}>
             <Popup>{pin.caption}</Popup>
           </Marker>
         )
       ))}
       {selectedLocation && (
-        <Marker position={[selectedLocation.lat, selectedLocation.lng]}>
+        <Marker position={[selectedLocation.lat, selectedLocation.lng]} icon = {gemIcon}>
           <Popup>Selected Location</Popup>
         </Marker>
       )}
