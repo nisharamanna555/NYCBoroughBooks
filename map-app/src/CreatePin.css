@@ -1,5 +1,8 @@
-body {
+.pin-form {
     display:flex;
     flex-direction: column;
-    background-color:blue;
+    background-color:green;
+    width: 50%;
+    position: absolute;
+    z-index: 100;
 }

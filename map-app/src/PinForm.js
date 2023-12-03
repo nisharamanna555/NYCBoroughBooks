@@ -1,6 +1,10 @@
 // src/PinForm.js
 import React, { useState } from 'react';
 import Map from './Map';
+
+//Styles and components
+import './CreatePin.css';
+
 const PinForm = ({ addPin }) => {
   const [caption, setCaption] = useState('');
   const [photo, setPhoto] = useState(null);
@@ -35,7 +39,7 @@ const PinForm = ({ addPin }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="pin-form" onSubmit={handleSubmit}>
       <label>
         Caption:
         <input type="text" value={caption} onChange={(e) => setCaption(e.target.value)} />

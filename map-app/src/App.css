@@ -3,6 +3,7 @@ body{
   font-family: 'Inter', sans-serif;
   color: #FFEBC4;
 }
+.leaflet-pane { z-index: 0 !important; }
 
 .App {
   text-align: center;
