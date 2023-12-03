@@ -20,15 +20,10 @@ function Header( {isLoggedIn, setIsLoggedIn, setUserInformation}) {
         <header>
             <nav>
                 <div className="nav--logo">
-                    <a href="/"><p>brandspiration</p>
+                    <a href="/"><p>NYC BoroughBook</p>
                     </a>
                 </div>
                 <div className="nav--links">
-                    {isLoggedIn && (
-                        <li className="create-post--nav">
-                            <Link to="/create-post"><p>Create</p></Link>
-                        </li>
-                    )}
                     {!isLoggedIn && (
                         <li>
                             <Link to="/login"><p>Login</p></Link>
