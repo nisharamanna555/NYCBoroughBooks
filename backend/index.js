@@ -1,9 +1,12 @@
 // index.js
 const express = require('express');
 const mongoose = require('mongoose');
+const Pin = require('./models/pin')
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
+
+app.use(express.json());
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/your-database-name', {
@@ -14,6 +17,28 @@ mongoose.connect('mongodb://localhost:27017/your-database-name', {
 // Check for MongoDB connection success
 mongoose.connection.on('connected', () => {
   console.log('Connected to MongoDB');
+});
+
+// Add a pin
+app.post('/pins', async (req, res) => {
+  try {
+    const { location, caption, photoUrl } = req.body;
+    const newPin = new Pin({ location, caption, photoUrl });
+    await newPin.save();
+    res.status(201).json(newPin);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Get all pins
+app.get('/pins', async (req, res) => {
+  try {
+    const pins = await Pin.find();
+    res.json(pins);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 // Define a basic route
