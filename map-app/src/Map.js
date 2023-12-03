@@ -37,9 +37,9 @@ const Map = ({ pins, selectedLocation }) => {
 });
 
 
-var gemIcon = new myIcon({iconUrl: gem, iconShadow: gemShadow}),
-    historyIcon = new myIcon({iconUrl: history, iconShadow: historyShadow}),
-    storyIcon = new myIcon({iconUrl: story, iconShadow: storyShadow});
+var gemIcon = new myIcon({iconUrl: gem, shadowURL: gemShadow}),
+    historyIcon = new myIcon({iconUrl: history, shadowURL: historyShadow}),
+    storyIcon = new myIcon({iconUrl: story, shadowURL: storyShadow});
 
   return (
     <MapContainer center={center} zoom={13} style={{ height: '500px', width: '100%' }} 
