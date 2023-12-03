@@ -65,7 +65,7 @@ function HomePage({app, isLoading, isLoggedIn, setIsLoggedIn, setUserInformation
     // Fetch existing pins from the backend
     const fetchPins = async () => {
       try {
-        const response = await fetch('http://localhost:3000/pins');
+        const response = await fetch('http://localhost:3001/pins');
         if (response.ok) {
           const pinsData = await response.json();
           setPins(pinsData);

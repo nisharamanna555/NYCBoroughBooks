@@ -6,7 +6,7 @@ const pinSchema = new mongoose.Schema({
     coordinates: [Number, Number],
   },
   caption: String,
-  // photoUrl: String,
+  photoUrl: String,
 });
 
 const Pin = mongoose.model('Pin', pinSchema);

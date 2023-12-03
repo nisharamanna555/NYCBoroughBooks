@@ -45,7 +45,6 @@ function LoginPage({ isLoading, isLoggedIn, setIsLoggedIn, setUserInformation })
         <>
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserInformation={setUserInformation}/>
             <div className="PageWrapper Form">
-                <h1>Log in</h1>
                 <LoginForm loginUser={loginUser}/>
                 <p>{errors}</p>
                 <div className="authorization">

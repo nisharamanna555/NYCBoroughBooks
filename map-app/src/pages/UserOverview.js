@@ -36,7 +36,6 @@ function UserOverview({ app, isLoading, isLoggedIn, userInformation, setIsLogged
         <>
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserInformation={setUserInformation} />
             <div className="PageWrapper Overview">
-                <h1>User Profile</h1>
                 <div className="Overview--text">
                     <h2>Username: </h2>
                     <p>{userInformation.displayName}</p>
