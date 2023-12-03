@@ -70,14 +70,15 @@ var gemIcon = new myIcon({iconUrl: gem, shadowUrl: gemShadow}),
         New York City hall!
       </Popup>
     </Marker>
-    <Marker position ={[40.7128, -73.9860]} icon = {historyIcon}>
+    <Marker position ={[40.7128, -73.9860]} icon = {storyIcon}>
       <Popup>
-        This is on Christopher Street.
+      Ew! I saw a rat here. Be careful, make sure to wear long pants.
       </Popup>
     </Marker>
-    <Marker position ={[40.7328, -74.0060]} icon = {storyIcon}>
+    <Marker position ={[40.7328, -74.0060]} icon = {historyIcon}>
       <Popup>
-        Ew! I saw a rat here. Be careful, make sure to wear long pants.
+      
+        This is on Christopher Street. There were riots here in 1969.
       </Popup>
     </Marker>
     
