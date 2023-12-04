@@ -11,7 +11,7 @@ app.use(cors())
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/beanbutter', {
+mongoose.connect('mongodb://localhost:27017/boroughbooksdb', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
