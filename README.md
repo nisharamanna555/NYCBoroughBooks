@@ -1,4 +1,4 @@
-# hackathon2024
+# Winning Project at NYU's Hackathon
 This project was created for NYU's 2023 Hackathon, winning "Best NYC Hack". It utilizes MongoDB, JavaScript, and Firebase.
 
 In the face of gentrification, the essence and culture of New York City is at risk. As four transplants, we felt compelled to address this serious issue. Introducing NYC BoroughBook – an innovative web application that operates as a living historical document for New York City. Maintained by locals, open to all.
