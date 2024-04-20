@@ -11,10 +11,7 @@ app.use(cors())
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/boroughbooksdb', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect('mongodb+srv://nisharamanna20:Lakshmi5@cluster0.nioivw1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
 
 // Check for MongoDB connection success
 mongoose.connection.on('connected', () => {
