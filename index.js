@@ -53,8 +53,3 @@ app.get('/pins', async (req, res) => {
 app.get('/', (req, res) => {
   res.send('Hello, Express!');
 });
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
